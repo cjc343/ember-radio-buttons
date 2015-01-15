@@ -15,7 +15,9 @@ export default Ember.View.extend({
 
     _updateElementValue: function() {
         Ember.run.next(this, function() {
-          this.$().prop('checked', this.get('htmlChecked'));
+          if (!this.get('isDestroying')) {
+            this.$().prop('checked', this.get('htmlChecked'));
+          }
         });
     }.observes('htmlChecked')
 });
